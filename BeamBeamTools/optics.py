@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
+from helpers import *
 
-def _dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey):
+def dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey):
     """
     This functions transforms the 4 DFs obtained from MAD-X into a dotdict with autocompletetion. 
     The output structure would be MADX_DICT.BEAM.Survey (or Twiss)
