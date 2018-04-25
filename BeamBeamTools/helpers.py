@@ -47,7 +47,8 @@ class utilityFunctions:
     '''
     This class contains several usuful functions. 
     '''
-    def setArrowLabel(self, ax, label='myLabel',arrowPosition=(0,0),labelPosition=(0,0), myColor='k', arrowArc_rad=-0.2):
+    @staticmethod
+    def setArrowLabel( ax, label='myLabel',arrowPosition=(0,0),labelPosition=(0,0), myColor='k', arrowArc_rad=-0.2):
         '''
         Credits to G. Sterbini.
         '''
