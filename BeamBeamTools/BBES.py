@@ -89,7 +89,7 @@ def _beam_BB_pattern(BBMatrixLHC,B1_fillingScheme=np.array([0,1,2,3]),B2_filling
     return dotdict(beam_BB_pattern)
 
 
-def _plotBunchBBPattern(beam_BB_pattern,beam='B1',exp='IR1',bunch='b400'):
+def plotBunchBBPattern(beam_BB_pattern,beam='B1',exp='IR1',bunch='b400'):
     """
     It returns a plot of the beam BB pattern.
     - beam_BB_pattern [dotdict]: contains the beam BB pattern
@@ -225,7 +225,7 @@ def optics_BB_pattern(BBMatrixLHC,B1_fillingScheme, B2_fillingScheme,B1Optics_BB
     
     
   
-def _computeBBMatrix(numberOfLRToConsider=20):
+def computeBBMatrix(numberOfLRToConsider=20):
         """
         It returns a beam-beam matrix. 
         To obtain the BB pattern of the bunch N of B1 you have to consider the N-row (e.g., BBMatrix[N,:]).
