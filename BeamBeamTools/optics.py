@@ -1,10 +1,25 @@
 import numpy as np
 import pandas as pd
 
+def _dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey):
+    """
+    This functions transforms the 4 DFs obtained from MAD-X into a dotdict with autocompletetion. 
+    The output structure would be MADX_DICT.BEAM.Survey (or Twiss)
+    """
+    B1opticsDic = dotdict({'Twiss':B1_twiss['opticsDF'],'Survey':B1_survey['opticsDF']})
+    B2opticsDic = dotdict({'Twiss':B2_twiss['opticsDF'],'Survey':B2_survey['opticsDF']})
+    return dotdict({'B1':B1opticsDic,'B2':B2opticsDic})
+    
 def preparingOpticsFromMADX(MADX_DICT):
-    """This function makes all the required optics post process needed to compute BB related values. 
+    """
+    This function makes all the required optics post process needed to compute BB related values. 
     The input is a dotdict containing the survey and the twiss from MAD-X for each beam. 
     The output has the same structure, but contains post-processed data. 
+    
+    NB: as the input is a dotdict, please prepare the optics data in such a structure using _dictOpticsFromMADX
+    
+    ===== EXAMPLE =====
+    MADX_DICT = preparingOpticsFromMADX(dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey))
     """
     # Mirroring
     B1_mirrored=MADX_DICT.B1.Twiss.copy()
@@ -15,8 +30,8 @@ def preparingOpticsFromMADX(MADX_DICT):
     B2_mirrored.index=B2_mirrored.index-MADX_DICT.B2.Twiss.index[-1]
     B2_mirrored['S']=B2_mirrored['S']-MADX_DICT.B2.Twiss.index[-1]
 
-    B1=pnd.concat([B1_mirrored,MADX_DICT.B1.Twiss])
-    B2=pnd.concat([B2_mirrored,MADX_DICT.B2.Twiss])
+    B1=pd.concat([B1_mirrored,MADX_DICT.B1.Twiss])
+    B2=pd.concat([B2_mirrored,MADX_DICT.B2.Twiss])
 
 
     B1SurveyMirrored=MADX_DICT.B1.Survey.copy()
@@ -28,8 +43,8 @@ def preparingOpticsFromMADX(MADX_DICT):
     B2SurveyMirrored['S']=B2SurveyMirrored['S']-MADX_DICT.B2.Survey.index[-1]
 
     # B1/2 survey
-    B1_survey=pnd.concat([B1SurveyMirrored,MADX_DICT.B1.Survey])
-    B2_survey=pnd.concat([B2SurveyMirrored,MADX_DICT.B2.Survey])
+    B1_survey=pd.concat([B1SurveyMirrored,MADX_DICT.B1.Survey])
+    B2_survey=pd.concat([B2SurveyMirrored,MADX_DICT.B2.Survey])
 
     #######========== SURVEY ==========#######
 
@@ -227,3 +242,31 @@ def preparingOpticsFromMADX(MADX_DICT):
     B2opticsDic = dotdict({'Twiss':B2_twiss_filter,'Survey':B1_survey_filter})
 
     return dotdict({'B1':B1opticsDic,'B2':B2opticsDic})
+
+
+def filterOpticsDF(BBES,beam,exp,bunch, B1Optics_BB,B2Optics_BB,removeHO=True):
+    '''
+    This function aims to filter the optics wrt to the previsouly prepared BBES structure. 
+    Please set "removeHO" to False in case you want to conserve the HO in the optics. 
+    '''
+    # Copy
+
+    B1Optics=B1Optics_BB[np.in1d(B1Optics_BB.index,BBES[beam][bunch][exp]['B1_RDV_position'])].copy()
+    B2Optics=B2Optics_BB[np.in1d(B2Optics_BB.index,BBES[beam][bunch][exp]['B2_RDV_position'])].copy()
+
+    # Partners
+
+    B1Optics['partners']=BBES[beam][bunch][exp]['partners']
+    B2Optics['partners']=BBES[beam][bunch][exp]['partners']
+    
+    if removeHO == True:
+        # Removing the HO
+
+        myIP = 'IP'+exp[2]
+        myHO = 'BBLR_'+myIP+'_HO'+'.'+'B1'
+        B1Optics = B1Optics[B1Optics.NAME != myHO]
+        myHO = 'BBLR_'+myIP+'_HO'+'.'+'B2'
+        B2Optics = B2Optics[B2Optics.NAME != myHO]
+
+    return dotdict({'B1Optics':B1Optics,'B2Optics':B2Optics})
+
