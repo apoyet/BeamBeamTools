@@ -62,7 +62,7 @@ def _beam_BB_pattern(BBMatrixLHC,B1_fillingScheme=np.array([0,1,2,3]),B2_filling
     B1_BB_pattern=dotdict({})
     for i in B1_fillingScheme:
         bunch_aux=dotdict({})
-        results=bunch_BB_pattern(Bunch=i,BBMatrixLHC=BBMatrixLHC)
+        results=_bunch_BB_pattern(Bunch=i,BBMatrixLHC=BBMatrixLHC)
         for j in experiments:
             bunch_exp=dotdict({})
             B1=results['B2'][j]
@@ -75,7 +75,7 @@ def _beam_BB_pattern(BBMatrixLHC,B1_fillingScheme=np.array([0,1,2,3]),B2_filling
     B2_BB_pattern=dotdict({})
     for i in B2_fillingScheme:
         bunch_aux=dotdict({})
-        results=bunch_BB_pattern(Bunch=i,BBMatrixLHC=BBMatrixLHC)
+        results=_bunch_BB_pattern(Bunch=i,BBMatrixLHC=BBMatrixLHC)
         for j in experiments:
             bunch_exp=dotdict({})
             B2=results['B2'][j] # Full machine --> TODO: write it in a more symmetric way...
@@ -108,11 +108,11 @@ def plotBunchBBPattern(beam_BB_pattern,beam='B1',exp='IR1',bunch='b400'):
     plt.title(beam+ ', ' + exp + ', bunch=' + bunch)
 
     if beam=='B1':
-        myToolbox.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=0.2)
-        myToolbox.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=0.2)
+        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=0.2)
+        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=0.2)
     else:
-        myToolbox.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=-0.2)
-        myToolbox.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=-0.2)
+        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=-0.2)
+        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=-0.2)
     plt.grid(ls=':')
     return ax1
 
