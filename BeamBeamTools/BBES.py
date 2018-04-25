@@ -130,7 +130,7 @@ def optics_BB_pattern(BBMatrixLHC,B1_fillingScheme, B2_fillingScheme,B1Optics_BB
         """
         length = len(B1Optics_BB[B1Optics_BB['NAME'].str.contains('BBLR_IP1_R_')])
         opticsIndex = np.arange(-length/2,1+length/2) 
-        results=beam_BB_pattern(BBMatrixLHC,B1_fillingScheme, B2_fillingScheme)
+        results=_beam_BB_pattern(BBMatrixLHC,B1_fillingScheme, B2_fillingScheme)
 
         # ***ATLAS***
 
