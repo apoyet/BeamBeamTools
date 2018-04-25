@@ -24,3 +24,7 @@ or to upgrade a fork of the project
 pip install --upgrade --user git+https://github.com/apoyet/BeamBeamTools.git@fork_name
 ```
 
+## Example
+A **very preliminary** example is available here: 
+
+https://cernbox.cern.ch/index.php/s/IoNfhnEXqzGZG4U
