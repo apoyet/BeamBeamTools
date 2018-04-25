@@ -40,4 +40,4 @@ class dotdict(dict):
  
     def __setstate__(self, state):
         self.update(state)
-self.__dict__ = self
+        self.__dict__ = self
