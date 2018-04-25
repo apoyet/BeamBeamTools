@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+from helpers import *
 
 
 def _bunch_BB_pattern(Bunch,BBMatrixLHC):
