@@ -90,33 +90,6 @@ def _beam_BB_pattern(BBMatrixLHC,B1_fillingScheme=np.array([0,1,2,3]),B2_filling
     return dotdict(beam_BB_pattern)
 
 
-def plotBunchBBPattern(beam_BB_pattern,beam='B1',exp='IR1',bunch='b400'):
-    """
-    It returns a plot of the beam BB pattern.
-    - beam_BB_pattern [dotdict]: contains the beam BB pattern
-    """
-    x=beam_BB_pattern[beam][bunch][exp]['RDV_index']
-    y=[1]*len(x)
-    plt.plot(x,y,'ok')
-    encounters=beam_BB_pattern[beam][bunch][exp]['partners']
-
-    plt.xlim(-25,25)
-    plt.ylim(.94, 1.06)
-
-    plt.yticks([])
-    plt.xlabel('BBLR encounter position')
-    ax1=plt.gca()
-    plt.title(beam+ ', ' + exp + ', bunch=' + bunch)
-
-    if beam=='B1':
-        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=0.2)
-        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=0.2)
-    else:
-        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[0]), arrowPosition=(x[0], y[0]), labelPosition=(x[0]-5, y[0]+.01), myColor='b', arrowArc_rad=-0.2)
-        utilityFunctions.setArrowLabel(plt.gca(), label=str(encounters[-1]), arrowPosition=(x[-1], y[-1]), labelPosition=(x[-1]+5, y[-1]-.01), myColor='r', arrowArc_rad=-0.2)
-    plt.grid(ls=':')
-    return ax1
-
 def optics_BB_pattern(BBMatrixLHC,B1_fillingScheme, B2_fillingScheme,B1Optics_BB,B2Optics_BB):
         """It returns the final BBES structure as a dot_dict, containing also the RDV position wrt B1 and B2 optics.
         - B1_fillingScheme [adimensional integer array]: the B1 filling scheme.
