@@ -7,8 +7,8 @@ def dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey):
     This functions transforms the 4 DFs obtained from MAD-X into a dotdict with autocompletetion. 
     The output structure would be MADX_DICT.BEAM.Survey (or Twiss)
     """
-    B1opticsDic = dotdict({'Twiss':B1_twiss['opticsDF'],'Survey':B1_survey['opticsDF']})
-    B2opticsDic = dotdict({'Twiss':B2_twiss['opticsDF'],'Survey':B2_survey['opticsDF']})
+    B1opticsDic = dotdict({'Twiss':B1_twiss,'Survey':B1_survey})
+    B2opticsDic = dotdict({'Twiss':B2_twiss,'Survey':B2_survey})
     return dotdict({'B1':B1opticsDic,'B2':B2opticsDic})
     
 def preparingOpticsFromMADX(MADX_DICT):
