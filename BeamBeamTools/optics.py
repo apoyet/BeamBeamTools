@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import dotdict
+from dotdict import *
 
 def dictOpticsFromMADX(B1_twiss,B2_twiss,B1_survey,B2_survey):
     """
