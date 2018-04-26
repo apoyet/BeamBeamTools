@@ -1,3 +1,7 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
 def _setArrowLabel(ax, label='myLabel',arrowPosition=(0,0),labelPosition=(0,0), myColor='k', arrowArc_rad=-0.2):
         return ax.annotate(label,
                       xy=arrowPosition, xycoords='data',
