@@ -71,7 +71,7 @@ def preparingOpticsFromMADX(MADX_DICT):
     # DeltaX and Delta Z computation from survey, taking into account the angle Theta
 
     DeltaX=B2_survey_filter['X'].values-B1_survey_filter['X'].values
-    DeltaY=B2_survey_filter['Z'].values-B1_survey_filter['Z'].values
+    DeltaY=B2_survey_filter['Y'].values-B1_survey_filter['Y'].values
 
     meanTheta=(B1_survey_filter['THETA'].values+B2_survey_filter['THETA'].values)/2.
 
@@ -82,7 +82,7 @@ def preparingOpticsFromMADX(MADX_DICT):
     B1_survey_filter['myDeltaX']=myDeltaX
 
     DeltaX=-B2_survey_filter['X'].values+B1_survey_filter['X'].values
-    DeltaY=-B2_survey_filter['Z'].values+B1_survey_filter['Z'].values
+    DeltaY=-B2_survey_filter['Y'].values+B1_survey_filter['Y'].values
 
     meanTheta=(B1_survey_filter['THETA'].values+B2_survey_filter['THETA'].values)/2.
 
