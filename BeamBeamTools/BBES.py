@@ -19,7 +19,7 @@ def _bunch_BB_pattern(Bunch,BBMatrixLHC):
     LR_in_IP=BBVector==10
     aux=np.where((LR_in_IP) | (HO_in_IP))[0]
     np.where(aux==Bunch)[0]
-    B1=np.roll(aux,  numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0])
+    B1=np.roll(aux,  int(numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0]))
     B2=B1[::-1]
     resultsB1={'IR1':B1,
          'IR5':B1}
@@ -29,7 +29,7 @@ def _bunch_BB_pattern(Bunch,BBMatrixLHC):
     LR_in_IP=BBVector==20
     aux=np.where((LR_in_IP) | (HO_in_IP))[0]
     np.where(aux==Bunch)[0]
-    B1=np.roll(aux, numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0])
+    B1=np.roll(aux, int(numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0]))
     B2=B1[::-1]
     resultsB1.update({'IR2':B1})
     resultsB2.update({'IR2':B2})
@@ -38,7 +38,7 @@ def _bunch_BB_pattern(Bunch,BBMatrixLHC):
     LR_in_IP=BBVector==80
     aux=np.where((LR_in_IP) | (HO_in_IP))[0]
     np.where(aux==Bunch)[0]
-    B1=np.roll(aux, numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0])
+    B1=np.roll(aux, int(numberOfLRToConsider-np.where(aux==np.where(HO_in_IP)[0][0])[0]))
     B2=B1[::-1]
     resultsB1.update({'IR8':B1})
     resultsB2.update({'IR8':B2})
