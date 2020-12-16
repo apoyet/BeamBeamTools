@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from dotdict import *
-from helpers import *
+#from helpers import *
 
 
 def _bunch_BB_pattern(Bunch,BBMatrixLHC):
