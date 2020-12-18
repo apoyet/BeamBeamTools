@@ -59,7 +59,7 @@ def plotBunchBBPattern(beam_BB_pattern,beam='B1',exp='IR1',bunch='b400'):
     return ax1
 
 
-def plot_BBMatrix(BBMatrixLHC, B1_bunches, B2_bunches,alpha=.2, width=1):
+def plot_BBMatrix(BBMatrixLHC, B1_bunches, B2_bunches,alpha=.2, width=1, textSize=10):
         """
         It plots a beam-beam matrix.
 
@@ -88,9 +88,9 @@ def plot_BBMatrix(BBMatrixLHC, B1_bunches, B2_bunches,alpha=.2, width=1):
         for i in B2_bunches:
             plt.gca().fill_between([0,3564], [i-width+1,i-width+1],  [i+width,i+width],color='w', alpha=alpha)
 
-        _setArrowLabel(ax=plt.gca(),label='IP1/5',labelPosition=(2000,2000), arrowPosition=(2000,2000), myColor='k')
-        _setArrowLabel(ax=plt.gca(),label='IP2',labelPosition=(2000,1100), arrowPosition=(2000,1100), myColor='k')
-        _setArrowLabel(ax=plt.gca(),label='IP8',labelPosition=(2000,2900), arrowPosition=(2000,2900), myColor='k')
-        _setArrowLabel(ax=plt.gca(),label='IP8',labelPosition=(3130,3564-3130), arrowPosition=(3130,3564-3130), myColor='k')
-        _setArrowLabel(ax=plt.gca(),label='IP2',labelPosition=(3564-3130,3130), arrowPosition=(3564-3130,3130), myColor='k')
+        _setArrowLabel(ax=plt.gca(),label='IP1/5',labelPosition=(2000,2000), arrowPosition=(2000,2000), myColor='k',textSize=textSize)
+        _setArrowLabel(ax=plt.gca(),label='IP2',labelPosition=(2000,1100), arrowPosition=(2000,1100), myColor='k',textSize=textSize)
+        _setArrowLabel(ax=plt.gca(),label='IP8',labelPosition=(2000,2900), arrowPosition=(2000,2900), myColor='k',textSize=textSize)
+        _setArrowLabel(ax=plt.gca(),label='IP8',labelPosition=(3130,3564-3130), arrowPosition=(3130,3564-3130), myColor='k',textSize=textSize)
+        _setArrowLabel(ax=plt.gca(),label='IP2',labelPosition=(3564-3130,3130), arrowPosition=(3564-3130,3130), myColor='k',textSize=textSize)
         return plt.gca()
